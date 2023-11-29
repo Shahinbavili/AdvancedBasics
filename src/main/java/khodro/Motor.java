@@ -1,6 +1,6 @@
 package khodro;
 
-public class Motor extends Khodro implements SandoghDar, Gearbox{
+public class Motor extends Khodro implements SandoghDar, Gearbox {
     @Override
     public boolean ayaDarHalHarekatAst() {
         return false;

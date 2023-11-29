@@ -1,6 +1,6 @@
 package khodro;
 
-public class Kashti extends Khodro{
+public class Kashti extends Khodro {
     @Override
     public boolean ayaDarHalHarekatAst() {
         return false;

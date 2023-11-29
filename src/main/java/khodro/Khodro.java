@@ -14,4 +14,8 @@ public abstract class Khodro {
     public abstract boolean ayaDarHalHarekatAst();
 
     public abstract String getMark();
+
+    protected void protectedMethod() {
+        System.out.println("This method is protected!");
+    }
 }

@@ -4,6 +4,7 @@ import java.util.StringJoiner;
 
 public class NamKhodroChapKon {
     Khodro[] khodroha;
+
     public NamKhodroChapKon(Khodro[] khodroha) {
         this.khodroha = khodroha;
     }

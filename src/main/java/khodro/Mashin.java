@@ -1,7 +1,9 @@
 package khodro;
 
 public class Mashin extends Khodro implements SandoghDar, Gearbox {
-    boolean ayaDarBazAst;
+    boolean ayaDarBazAst; //false
+
+    boolean ayaRoshanAst; //false
     String mark;
     double gonjayeshSandogh;
     String noeDande;
@@ -12,10 +14,22 @@ public class Mashin extends Khodro implements SandoghDar, Gearbox {
         this.noeDande = noeDande;
     }
 
+    void bazKardanDar() {
+        ayaDarBazAst = true;
+    }
+
+    void bastanDar() {
+        ayaDarBazAst = false;
+    }
 
     @Override
     public boolean ayaDarHalHarekatAst() {
-        return false;
+        protectedMethod();
+        if (ayaRoshanAst && !ayaDarBazAst) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
