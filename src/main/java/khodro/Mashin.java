@@ -1,6 +1,7 @@
 package khodro;
 
 public class Mashin extends Khodro implements SandoghDar, Gearbox {
+    public static int tedadForoush;
     boolean ayaDarBazAst; //false
 
     boolean ayaRoshanAst; //false
@@ -12,6 +13,9 @@ public class Mashin extends Khodro implements SandoghDar, Gearbox {
         this.mark = mark;
         this.gonjayeshSandogh = gonjayeshSandogh;
         this.noeDande = noeDande;
+    }
+
+    public Mashin() {
     }
 
     void bazKardanDar() {

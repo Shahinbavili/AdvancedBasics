@@ -4,5 +4,6 @@ public class CarTest {
 
     @Test
     void mashin() {
+
     }
 }
