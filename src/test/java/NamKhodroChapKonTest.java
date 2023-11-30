@@ -11,7 +11,7 @@ public class NamKhodroChapKonTest {
         Khodro motor = new Motor();
         Khodro kashti = new Kashti();
         Khodro[] khodroha = {benz, volvo, motor, kashti};
-        NamKhodroChapKon namKhodroChapKon = new NamKhodroChapKon(khodroha);
+        ForoushandeMashinTest.NamKhodroChapKon namKhodroChapKon = new ForoushandeMashinTest.NamKhodroChapKon(khodroha);
 
 //        When
         String listNamKhodroha = namKhodroChapKon.execute();

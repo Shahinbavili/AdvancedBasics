@@ -29,11 +29,7 @@ public class Mashin extends Khodro implements SandoghDar, Gearbox {
     @Override
     public boolean ayaDarHalHarekatAst() {
         protectedMethod();
-        if (ayaRoshanAst && !ayaDarBazAst) {
-            return true;
-        } else {
-            return false;
-        }
+        return ayaRoshanAst && !ayaDarBazAst;
     }
 
     @Override

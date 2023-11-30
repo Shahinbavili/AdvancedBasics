@@ -1,7 +1,10 @@
 import foroushande.Foroushande;
+import khodro.Khodro;
 import khodro.Mashin;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.StringJoiner;
 
 public class ForoushandeMashinTest {
     @Test
@@ -16,7 +19,23 @@ public class ForoushandeMashinTest {
         nasser.foroushMashin();
 
 
-
         Assertions.assertEquals(5, Mashin.tedadForoush);
+    }
+
+    public static class NamKhodroChapKon {
+        Khodro[] khodroha;
+
+        public NamKhodroChapKon(Khodro[] khodroha) {
+            this.khodroha = khodroha;
+        }
+
+        public String execute() {
+            StringJoiner namKhodroha = new StringJoiner("-");
+            for (int i = 0; i < khodroha.length; i++) {
+                Khodro khodro = khodroha[i];
+                namKhodroha.add(khodro.getMark());
+            }
+            return namKhodroha.toString();
+        }
     }
 }
