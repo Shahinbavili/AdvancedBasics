@@ -1,6 +1,11 @@
 package khodro;
 
 public abstract class Khodro {
+    @Override
+    public String toString() {
+        return "Khodro{}";
+    }
+
     boolean ayaRoshanAst;
 
     public void roshan() {
