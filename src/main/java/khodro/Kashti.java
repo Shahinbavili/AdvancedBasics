@@ -1,5 +1,7 @@
 package khodro;
 
+import static java.lang.System.out;
+
 public class Kashti extends Khodro {
 
     @Override
@@ -19,5 +21,13 @@ public class Kashti extends Khodro {
     public String getMark() {
 
         return "Kashti";
+    }
+
+    public void printReference() {
+        System.out.println(this);
+    }
+
+    public void printReferenceObject(Object object) {
+        out.println(object);
     }
 }
