@@ -1,6 +1,6 @@
 import foroushande.Foroushande;
 import khodro.Khodro;
-import khodro.Mashin;
+import khodro.mashin.Mashin;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

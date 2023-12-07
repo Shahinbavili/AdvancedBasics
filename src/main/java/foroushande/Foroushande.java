@@ -1,6 +1,6 @@
 package foroushande;
 
-import khodro.Mashin;
+import khodro.mashin.Mashin;
 
 public class Foroushande {
     public void foroushMashin() {

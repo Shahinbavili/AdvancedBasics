@@ -1,4 +1,8 @@
-package khodro;
+package khodro.mashin;
+
+import khodro.Gearbox;
+import khodro.Khodro;
+import khodro.SandoghDar;
 
 public class Mashin extends Khodro implements SandoghDar, Gearbox {
     public static int tedadForoush;
@@ -7,9 +11,9 @@ public class Mashin extends Khodro implements SandoghDar, Gearbox {
     boolean ayaRoshanAst; //false
     String mark;
     double gonjayeshSandogh;
-    String noeDande;
+    Dande noeDande;
 
-    public Mashin(String mark, int gonjayeshSandogh, String noeDande) {
+    public Mashin(String mark, int gonjayeshSandogh, Dande noeDande) {
         this.mark = mark;
         this.gonjayeshSandogh = gonjayeshSandogh;
         this.noeDande = noeDande;
