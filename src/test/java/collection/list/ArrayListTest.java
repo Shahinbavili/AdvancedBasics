@@ -1,9 +1,9 @@
 package collection.list;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,6 +15,50 @@ public class ArrayListTest {
         List<String> strings = new ArrayList<>();
 
         assertThat(strings).isEmpty();
+    }
+
+    @Test
+    void should_Revers_A_List() {
+//        Given
+        List<String> animals = new ArrayList<>();
+        animals.add("Dog");
+        animals.add("Cat");
+        animals.add("Cat");
+        animals.add("Cat");
+        animals.add("Rabbit");
+//When
+        Collections.reverse(animals);
+        List<String> reversedAnimal = new ArrayList<>();
+        reversedAnimal.add("Rabbit");
+        reversedAnimal.add("Cat");
+        reversedAnimal.add("Cat");
+        reversedAnimal.add("Cat");
+        reversedAnimal.add("Dog");
+
+//        Then
+
+        assertThat(animals).isEqualTo(reversedAnimal);
+        assertThat(reversedAnimal.indexOf("Cat")).isEqualTo(1);
+        assertThat(reversedAnimal.lastIndexOf("Cat")).isEqualTo(3);
+        assertThat(reversedAnimal.contains("Dog")).isTrue();
+
+    }
+
+    @Test
+    void should_Be_Immutable() {
+//        given
+        List<String> animals = new ArrayList<>();
+        animals.add("Dog");
+        animals.add("Cat");
+        animals.add("Cat");
+        animals.add("Cat");
+        animals.add("Rabbit");
+        List<String> unmodifiableAnimals = Collections.unmodifiableList(animals);
+//when
+        animals.add("Snack");
+//      then
+        assertThat(animals.size()).isEqualTo(6);
+        assertThat(unmodifiableAnimals.size()).isEqualTo(6);
     }
 
     @Test
@@ -31,10 +75,10 @@ public class ArrayListTest {
         expectedList.add(1);
         expectedList.add(2);
         expectedList.add(3);
-        Assertions.assertThat(arrayListNumbers).isEqualTo(expectedList);
+        assertThat(arrayListNumbers).isEqualTo(expectedList);
     }
 
-    class Convertor {
+    static class Convertor {
 
         public List<Integer> convertToArrayList(int[] arrayNumbers) {
             List<Integer> listNumbers = new ArrayList<>();
