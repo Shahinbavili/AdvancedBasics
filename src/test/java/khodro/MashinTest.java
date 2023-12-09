@@ -1,3 +1,5 @@
+package khodro;
+
 import khodro.mashin.Dande;
 import khodro.mashin.Mashin;
 import org.junit.jupiter.api.Test;
@@ -9,5 +11,5 @@ public class MashinTest {
     void bayad_Print_Konad() {
         Mashin mashin = new Mashin("Peugeot", 76, Dande.AUTOMATIC);
         out.println(mashin);
-}
+    }
 }

@@ -1,3 +1,5 @@
+package khodro;
+
 import khodro.Ranande;
 import org.junit.jupiter.api.Test;
 
