@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class SetTest {
@@ -26,6 +27,20 @@ public class SetTest {
         expectedAnimals.add("Lion");
 
         Assertions.assertThat(animals).isEqualTo(expectedAnimals);
+
+        for (String animal : animals) {
+            System.out.println(animal);
+        }
+    }
+
+    @Test
+    void should_Maintain_Insertion_Order() {
+        Set<String> animals = new LinkedHashSet<>();
+        animals.add("Monkey");
+        animals.add("Zebra");
+        animals.add("Elephant");
+        animals.add("Crocodile");
+        animals.add("Lion");
 
         for (String animal : animals) {
             System.out.println(animal);
