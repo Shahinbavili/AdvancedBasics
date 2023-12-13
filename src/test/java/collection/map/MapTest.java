@@ -10,7 +10,7 @@ import java.util.Set;
 public class MapTest {
     @Test
     void hashMap_Should_Have_Unique_Keys_And_Can_Duplicated_Values() {
-        // Creating a Hashtable to store geometrical shapes and their colors
+        // Creating a HashMap to store geometrical shapes and their colors
         Map<String, String> geometrics = new HashMap<>();
         geometrics.put("Triangle", "Red");
         geometrics.put("Rectangle", "Blue");
@@ -28,7 +28,7 @@ public class MapTest {
 
     @Test
     void linkedHashMap_Should_Sort_Insertion_Order() {
-        // Creating a Hashtable to store geometrical shapes and their colors
+        // Creating a LinkedHashMap to store geometrical shapes and their colors
         Map<String, String> geometrics = new LinkedHashMap<>();
         geometrics.put("Triangle", "Red");
         geometrics.put("Rectangle", "Blue");
