@@ -12,6 +12,7 @@ public class CompareObjectsTest {
         assertThat(1 == 1).isTrue();
         assertThat(1 != 2).isTrue();
     }
+
     @Test
     void should_Compare_Non_Primitives_Objects() {
         String shahin1 = new String("Shahin");
