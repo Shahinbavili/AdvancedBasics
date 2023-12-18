@@ -13,6 +13,8 @@ public class Calculator {
         } catch (NumberFormatException nfe) {
             System.out.println("The entered number format is not allowed");
             throw nfe;
+        } finally {
+            System.out.println("Please try again");
         }
         double result = d1 + d2;
         return String.valueOf(result);

@@ -1,5 +1,6 @@
 package calculator;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,4 +14,12 @@ public class CalculatorTest {
 
         assertEquals("3.3", haselJameDoAdad);
     }
+
+    @Test
+    void Bayad_NumberFormatException_Ijad_Konad_Agar_Adad_Sahih_Nistand() {
+        Calculator calculator = new Calculator();
+        Assertions.assertThatExceptionOfType(NumberFormatException.class)
+                .isThrownBy(() ->calculator.add("5...3", "-2"));
+    }
+
 }
