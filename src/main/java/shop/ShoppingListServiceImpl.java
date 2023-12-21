@@ -3,10 +3,15 @@ package shop;
 import java.util.List;
 
 public class ShoppingListServiceImpl implements ShoppingListService {
+    final ShoppingListDAO shoppingListDAO;
+
+    public ShoppingListServiceImpl(ShoppingListDAO shoppingListDAO) {
+        this.shoppingListDAO = shoppingListDAO;
+    }
+
     @Override
     public List<Item> findAllItems() {
-        //Get all items from database : Any logic
-        return null;
+        return shoppingListDAO.findAllItems();
     }
 
     @Override
@@ -19,5 +24,6 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         }
 
 //        save all items in the database
+        shoppingListDAO.saveItems(items);
     }
 }

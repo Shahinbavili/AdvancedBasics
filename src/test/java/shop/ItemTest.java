@@ -15,7 +15,7 @@ public class ItemTest {
 
     @BeforeEach
     void setup() {
-        shoppingList = new ShoppingListServiceImpl();
+        shoppingList = new ShoppingListServiceImpl(new ShoppingListDAOImpl());
         itemList = new LinkedList<>();
     }
 
