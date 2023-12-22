@@ -20,6 +20,9 @@ public class Mashin extends Khodro implements SandoghDar, Gearbox, Comparable<Ma
         this.gonjayeshSandogh = gonjayeshSandogh;
         this.noeDande = noeDande;
     }
+    public Mashin(String mark) {
+        this.mark = mark;
+    }
 
     public Mashin() {
     }
