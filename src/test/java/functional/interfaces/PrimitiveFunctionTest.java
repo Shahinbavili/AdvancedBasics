@@ -38,6 +38,6 @@ public class PrimitiveFunctionTest {
         int plus = increment.applyAsInt(5);
 
         assertThat(result).isEqualTo(156L);
-        assertThat(plus).isEqualTo(10);
+        assertThat(plus).isEqualTo(6);
     }
 }
