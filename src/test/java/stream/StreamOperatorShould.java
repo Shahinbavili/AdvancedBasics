@@ -98,4 +98,19 @@ public class StreamOperatorShould {
         assertThat(reversedSortedScorerGoals).isEqualTo(expectedGoals);
 
     }
+
+    @Test
+    void limit_and_skip_data() {
+        final List<Integer> sortedScorerGoals = players.stream()
+                .map(Player::getGoal)
+                .sorted()
+                .skip(3)
+                .limit(1)
+                .collect(toList());
+
+        final List<Integer> limitedAndSkippedExpectedGoals = new LinkedList<>();
+        limitedAndSkippedExpectedGoals.add(128);
+
+        assertThat(sortedScorerGoals).isEqualTo(limitedAndSkippedExpectedGoals);
+    }
 }
