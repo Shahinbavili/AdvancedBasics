@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import static java.util.Comparator.reverseOrder;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -60,5 +61,39 @@ public class StreamOperatorShould {
                 .collect(toList());
 
         assertThat(playerNames).isEqualTo(expectedNames);
+    }
+
+    @Test
+    void sort_data() {
+        final List<Integer> sortedScorerGoals = players.stream()
+                .map(Player::getGoal)
+                .sorted()
+                .collect(toList());
+
+        final List<Integer> expectedGoals = new LinkedList<>();
+        expectedGoals.add(93);
+        expectedGoals.add(106);
+        expectedGoals.add(109);
+        expectedGoals.add(128);
+
+        assertThat(sortedScorerGoals).isEqualTo(expectedGoals);
+
+    }
+
+    @Test
+    void reversed_sort_data() {
+        final List<Integer> reversedSortedScorerGoals = players.stream()
+                .map(Player::getGoal)
+                .sorted(reverseOrder())
+                .collect(toList());
+
+        final List<Integer> expectedGoals = new LinkedList<>();
+        expectedGoals.add(128);
+        expectedGoals.add(109);
+        expectedGoals.add(106);
+        expectedGoals.add(93);
+
+        assertThat(reversedSortedScorerGoals).isEqualTo(expectedGoals);
+
     }
 }
