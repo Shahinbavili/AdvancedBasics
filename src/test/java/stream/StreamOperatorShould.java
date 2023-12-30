@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import static java.lang.System.out;
 import static java.util.Comparator.reverseOrder;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,6 +34,7 @@ public class StreamOperatorShould {
         Predicate<? super Player> nameIsAli = player -> player.getName().contains("Ali");
         final List<Player> topScorerWhereNameContainsAli = players.stream()
                 .filter(topScorer)
+                .peek(out::println)
                 .filter(nameIsAli)
                 .collect(toList());
 
