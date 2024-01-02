@@ -102,6 +102,26 @@ public class TerminalOperationShould {
         out.println(concatenatedNames);
 
         assertThat(concatenatedNames).isPresent().hasValue("Cristiano RONALDO, Ali DAEI, Lionel MESSI, Sunil CHHETRI");
+    }
 
+    @Test
+    void match_data() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+        // allMatch example: Check if all numbers are greater than 0
+        boolean allGreaterThanZero = numbers.stream().allMatch(n -> n > 0);
+        System.out.println("All greater than zero: " + allGreaterThanZero);
+
+        // anyMatch example: Check if any number is equal to 3
+        boolean anyEqualToThree = numbers.stream().anyMatch(n -> n == 3);
+        System.out.println("Any equal to three: " + anyEqualToThree);
+
+        // noneMatch example: Check if no number is greater than 10
+        boolean noneGreaterThanTen = numbers.stream().noneMatch(n -> n > 10);
+        System.out.println("None greater than ten: " + noneGreaterThanTen);
+
+        assertThat(allGreaterThanZero).isTrue();
+        assertThat(anyEqualToThree).isTrue();
+        assertThat(noneGreaterThanTen).isTrue();
     }
 }
