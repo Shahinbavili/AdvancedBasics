@@ -15,7 +15,10 @@ import java.util.function.ToIntFunction;
 import java.util.function.UnaryOperator;
 
 import static java.lang.System.out;
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static java.util.UUID.randomUUID;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toMap;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -61,5 +64,21 @@ public class TerminalOperationShould {
         assertThat(summary.getMax()).isEqualTo(128);
         assertThat(summary.getMin()).isEqualTo(93);
         assertThat(summary.getCount()).isEqualTo(4L);
+    }
+
+    @Test
+    void group_data() {
+        List<String> words = asList("Banana", "Apple", "Orange", "Cherry", "Avocado", "Pineapple", "Peach");
+        final Map<Integer, List<String>> wordsGroupedByLength = words.stream()
+                .collect(groupingBy(String::length));
+        out.println(wordsGroupedByLength);
+
+        assertThat(wordsGroupedByLength)
+                .containsKeys(5, 6, 7, 9)
+                .containsEntry(5, asList("Apple", "Peach"))
+                .containsEntry(6, asList("Banana", "Orange", "Cherry"))
+                .containsEntry(7, singletonList("Avocado"))
+                .containsEntry(9, singletonList("Pineapple"))
+                .hasSize(4);
     }
 }
