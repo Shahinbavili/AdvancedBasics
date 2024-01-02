@@ -5,10 +5,7 @@ import football.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
@@ -80,5 +77,31 @@ public class TerminalOperationShould {
                 .containsEntry(7, singletonList("Avocado"))
                 .containsEntry(9, singletonList("Pineapple"))
                 .hasSize(4);
+    }
+
+    @Test
+    void reduce_data() {
+        List<Integer> numbers = asList(1, 2, 3, 4, 5);
+        final Optional<Integer> sumByReduce = numbers.stream().reduce(Integer::sum);
+
+        assertThat(sumByReduce).isPresent().hasValue(15);
+
+//        In this example, the sum will start with 2 as the initial value, and the elements 1, 2, 3, 4, and 5 will be added to it. The result is 17.
+        final Integer sumByOptionalReduce = numbers.stream().reduce(2, Integer::sum);
+
+        assertThat(sumByOptionalReduce).isEqualTo(17);
+
+        final Optional<String> concatenatedNames = players.stream().map(player -> {
+            final String[] namePart = player.getName().split(" ");
+            if (namePart.length == 2) {
+                return namePart[0] + " " + namePart[1].toUpperCase();
+            } else {
+                return player.getName();
+            }
+        }).reduce((a, b) -> a + ", " + b);
+        out.println(concatenatedNames);
+
+        assertThat(concatenatedNames).isPresent().hasValue("Cristiano RONALDO, Ali DAEI, Lionel MESSI, Sunil CHHETRI");
+
     }
 }
