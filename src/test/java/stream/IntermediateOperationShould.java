@@ -113,4 +113,16 @@ public class IntermediateOperationShould {
 
         assertThat(sortedScorerGoals).isEqualTo(limitedAndSkippedExpectedGoals);
     }
+
+    @Test
+    void be_lazy() {
+        final List<Integer> goals = players.stream()
+                .map(Player::getGoal)
+                .peek(out::println)
+                .filter(goal -> goal < 50)
+                .peek(goal -> out.println("never happen"))
+                .collect(toList());
+
+        assertThat(goals).isEmpty();
+    }
 }
