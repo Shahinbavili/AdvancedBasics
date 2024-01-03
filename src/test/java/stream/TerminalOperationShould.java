@@ -18,6 +18,7 @@ import static java.util.UUID.randomUUID;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toMap;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class TerminalOperationShould {
     private List<Player> players;
@@ -123,5 +124,22 @@ public class TerminalOperationShould {
         assertThat(allGreaterThanZero).isTrue();
         assertThat(anyEqualToThree).isTrue();
         assertThat(noneGreaterThanTen).isTrue();
+    }
+
+    @Test
+    void find_data() {
+        List<String> fruits = Arrays.asList("apple", "banana", "orange", "kiwi", "pear", "olive");
+        final Optional<String> fruitStartWithO = fruits.stream().filter(fruit -> fruit.startsWith("o")).findAny();
+
+        assertThat(fruitStartWithO).isPresent();
+
+        // Assert that the result is one of the expected values
+        assertThatCode(() -> assertThat(fruitStartWithO)
+                .hasValueSatisfying(value -> assertThat(value).isIn("orange", "olive")))
+                .doesNotThrowAnyException();
+
+        final Optional<String> fruitStartWithP = fruits.stream().filter(fruit -> fruit.startsWith("p")).findFirst();
+
+        assertThat(fruitStartWithP).isPresent().hasValue("pear");
     }
 }
