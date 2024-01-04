@@ -142,4 +142,5 @@ public class TerminalOperationShould {
 
         assertThat(fruitStartWithP).isPresent().hasValue("pear");
     }
+
 }
