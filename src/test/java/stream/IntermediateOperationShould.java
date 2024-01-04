@@ -2,16 +2,17 @@ package stream;
 
 import footbal.player.PlayerTestHelper;
 import football.player.Player;
+import football.player.PlayerWithCups;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static java.lang.System.out;
+import static java.util.Arrays.asList;
 import static java.util.Comparator.reverseOrder;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,9 +44,9 @@ public class IntermediateOperationShould {
 
     @Test
     void map_data() {
-        List<Integer> expectedArray = Arrays.asList(6, 5, 9, 6);
+        List<Integer> expectedArray = asList(6, 5, 9, 6);
 
-        List<String> words = Arrays.asList("Banana", "Apple", "Pineapple", "Orange");
+        List<String> words = asList("Banana", "Apple", "Pineapple", "Orange");
         final List<Integer> lengths = words.stream().map(String::length)
                 .collect(toList());
 
@@ -124,5 +125,25 @@ public class IntermediateOperationShould {
                 .collect(toList());
 
         assertThat(goals).isEmpty();
+    }
+
+    @Test
+    void handle_complex_objects() {
+        final List<PlayerWithCups> playersWithCups = new PlayerTestHelper().getPlayersWithCups();
+        final List<List<String>> cupsByMap = playersWithCups.stream()
+                .filter(pwc -> pwc.getName().contains("Ali"))
+                .map(PlayerWithCups::getCup)
+                .collect(toList());
+        cupsByMap.forEach(out::println);
+
+        assertThat(cupsByMap).contains(asList("Iranian championship", "Bundesliga"));
+
+        final List<String> cupsByFlatMap = playersWithCups.stream()
+                .filter(pwc -> pwc.getName().contains("Ali"))
+                .flatMap(p -> p.getCup().stream())
+                .collect(toList());
+        cupsByFlatMap.forEach(out::println);
+
+        assertThat(cupsByFlatMap).contains("Iranian championship", "Bundesliga");
     }
 }
