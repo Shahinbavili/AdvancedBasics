@@ -1,9 +1,11 @@
 package football.team;
 
+import java.util.Optional;
+
 public class Team {
     private Coach coach;
 
-    public Coach getCoach() {
-        return coach;
+    public Optional<Coach> getCoach() {
+        return Optional.ofNullable(coach);
     }
 }

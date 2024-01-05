@@ -5,7 +5,9 @@ import football.team.Degree;
 import football.team.Team;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.System.out;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class OptionalShould {
     //    null: Optional, Maybe
@@ -13,13 +15,13 @@ public class OptionalShould {
     void avoid_null_related_problems() {
 //        Before Java 8:
         final Team team = new Team();
-        final Coach coach = team.getCoach();
-        if (coach != null) {
-            final Degree degree = coach.getDegree();
-            if (degree != null) {
-                final String value = degree.getValue();
+        final Optional<Coach> coach = team.getCoach();
+        if (coach.isPresent()) {
+            final Optional<Degree> degree = coach.get().getDegree();
+            if (degree.isPresent()) {
+                final String value = degree.get().getValue();
 
-                out.println(value);
+                assertThat(value).isEqualTo(null);
             }
         }
 
