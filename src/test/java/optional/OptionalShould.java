@@ -7,14 +7,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
+import static java.lang.System.out;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OptionalShould {
     //    null: Optional, Maybe
     @Test
     void avoid_null_related_problems() {
-//        Before Java 8:
         final Team team = new Team();
+
+//        Before Java 8:
         final Optional<Coach> coach = team.getCoach();
         if (coach.isPresent()) {
             final Optional<Degree> degree = coach.get().getDegree();
@@ -24,6 +26,10 @@ public class OptionalShould {
                 assertThat(value).isEqualTo(null);
             }
         }
-
+//    From Java 8 :
+        team.getCoach()
+                .flatMap(Coach::getDegree)
+                .map(Degree::getValue)
+                .ifPresent(out::println);
     }
 }
