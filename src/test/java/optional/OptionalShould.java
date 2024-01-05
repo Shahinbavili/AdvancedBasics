@@ -14,7 +14,7 @@ public class OptionalShould {
     //    null: Optional, Maybe
     @Test
     void avoid_null_related_problems() {
-        final Team team = new Team();
+        final Team team = new Team(new Coach(new Degree("A")));
 
 //        Before Java 8:
         final Optional<Coach> coach = team.getCoach();
@@ -23,13 +23,15 @@ public class OptionalShould {
             if (degree.isPresent()) {
                 final String value = degree.get().getValue();
 
-                assertThat(value).isEqualTo(null);
+                assertThat(value).isEqualTo("A");
             }
         }
 //    From Java 8 :
-        team.getCoach()
+        final Optional<String> value = team.getCoach()
                 .flatMap(Coach::getDegree)
-                .map(Degree::getValue)
-                .ifPresent(out::println);
+                .map(Degree::getValue);
+        value.ifPresent(out::println);
+
+        assertThat(value).hasValue("A");
     }
 }
