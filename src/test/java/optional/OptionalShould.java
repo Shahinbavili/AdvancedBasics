@@ -48,4 +48,26 @@ public class OptionalShould {
 
         assertThat(Optional.ofNullable(otherName)).isEmpty(); //No NPE
     }
+
+    @Test
+    void have_default_values() {
+//        Cautions: if our default value use a function, is better to use orElseGet to benefice the
+//        lazy loading concept and avoid the bugs
+//        for juste a variable as default value is no problem to use orElse
+        String name = "Raphaël";
+        out.println("orElse case:");
+        final String result1 = Optional.ofNullable(name).orElse(getDefaultName());
+
+        out.println(result1);
+
+        out.println("orElseGet case:");
+        final String result2 = Optional.ofNullable(name).orElseGet(this::getDefaultName);
+
+        out.println(result2);
+    }
+
+    private String getDefaultName() {
+        out.println("Default name called!");
+        return "No name is provided";
+    }
 }
