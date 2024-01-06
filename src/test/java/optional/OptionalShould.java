@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import static java.lang.System.out;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class OptionalShould {
     //    null: Optional, Maybe
@@ -33,5 +34,18 @@ public class OptionalShould {
         value.ifPresent(out::println);
 
         assertThat(value).hasValue("A");
+    }
+
+    @Test
+    void be_created() {
+        String name = "Albert";
+        assertThat(Optional.of(name).get()).isEqualTo("Albert");
+
+        String otherName = null;
+        assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> Optional.of(otherName));
+
+//        assertThat(Optional.of(otherName).get()).isEqualTo(null); NPE !
+
+        assertThat(Optional.ofNullable(otherName)).isEmpty(); //No NPE
     }
 }
