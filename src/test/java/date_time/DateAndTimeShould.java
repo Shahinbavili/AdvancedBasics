@@ -54,7 +54,5 @@ public class DateAndTimeShould {
         final LocalTime now = LocalTime.now();
         final LocalTime nowMinus5Hours = now.minusHours(5);
         System.out.println(nowMinus5Hours);
-
-
     }
 }
