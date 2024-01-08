@@ -2,17 +2,16 @@ package date_time;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import static java.time.Duration.between;
 import static java.time.ZonedDateTime.now;
 import static java.time.format.DateTimeFormatter.ofPattern;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DateAndTimeShould {
 //    Thread safety
@@ -54,5 +53,25 @@ public class DateAndTimeShould {
         final LocalTime now = LocalTime.now();
         final LocalTime nowMinus5Hours = now.minusHours(5);
         System.out.println(nowMinus5Hours);
+    }
+
+    @Test
+    void should_compare_dates() {
+        final LocalDateTime now = LocalDateTime.now();
+        final LocalDateTime nowPlusFiveDays = now.plusDays(5);
+
+        assertThat(now.isBefore(nowPlusFiveDays)).isTrue();
+        assertThat(nowPlusFiveDays.isAfter(now)).isTrue();
+        assertThat(now.isEqual(nowPlusFiveDays)).isFalse();
+
+        final Duration duration = between(now, nowPlusFiveDays);
+
+        assertThat(duration).isEqualTo(Duration.ofDays(5));
+
+        final LocalDate nowByLocalDate = LocalDate.now();
+        final LocalDate nowByLocalDatePlusFive = nowByLocalDate.plusDays(5);
+        final Period period = Period.between(nowByLocalDate, nowByLocalDatePlusFive);
+
+        assertThat(period.getDays()).isEqualTo(5);
     }
 }
