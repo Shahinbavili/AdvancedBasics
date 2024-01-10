@@ -5,5 +5,7 @@ public interface Company {
         return annualTurnover * getTaxPercentage();
     }
 
-    double getTaxPercentage();
+    default double getTaxPercentage() {
+        return 0.1;
+    }
 }

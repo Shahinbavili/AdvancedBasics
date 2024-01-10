@@ -12,6 +12,7 @@ public class CompanyTaxCalculatorShould {
     void calculate_tax_for_companies() {
         assertTaxToPay(new SelfEmployed(), 250.0);
         assertTaxToPay(new SAS(), 330.0);
+        assertTaxToPay(new SARL(), 100.0);
     }
 
     private static void assertTaxToPay(Company company, double expectedTaxToPay) {
