@@ -12,13 +12,14 @@ public class Player {
         this.goal = goal;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getGoal() {
         return goal;
     }
 
-    public String getName() {
-        return name;
-    }
 
     @Override
     public boolean equals(Object o) {
