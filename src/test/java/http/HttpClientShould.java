@@ -3,6 +3,7 @@ package http;
 import com.google.gson.Gson;
 import football.player.Player;
 import football.player.Players;
+import football.player.ResponseStatus;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
@@ -34,5 +35,27 @@ public class HttpClientShould {
         final List<Player> bestScorers = players.getPlayers()
                 .stream().filter(player -> player.getGoal() > 120).collect(toUnmodifiableList());
         assertThat(bestScorers).contains(new Player("Cristiano Ronaldo", 128));
+    }
+
+    @Test
+    void send_a_request_to_add_a_player() throws Exception {
+        String player = new Gson().toJson(new Player("Kylian Mbappé", 46));
+        out.println(player);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI("https://shahin.free.beeceptor.com/players/add"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(player))
+                .build();
+
+        final HttpResponse<String> response = HttpClient.newHttpClient()
+                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        final String body = response.body();
+
+        final Gson gson = new Gson();
+        final ResponseStatus responseStatus = gson.fromJson(body, ResponseStatus.class);
+
+        assertThat(responseStatus.getStatus()).isEqualTo("200");
     }
 }
